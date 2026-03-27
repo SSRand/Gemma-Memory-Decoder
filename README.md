@@ -2,6 +2,10 @@
 
 This repository is adapted from [Qwen-Memory-Decoder](https://github.com/SSRand/Qwen-Memory-Decoder) with support for the **Gemma 3** model family. The base model / KNN datastore generator uses [**Gemma-3-4B-IT**](https://huggingface.co/google/gemma-3-4b-it) (multimodal, `model_type=gemma3`) and the MemoryDecoder uses [**Gemma-3-1B-IT**](https://huggingface.co/google/gemma-3-1b-it) (CausalLM, `model_type=gemma3_text`).
 
+- **Multi-domain datasets**: Supports mixed-domain training across WikiText (general), MIMIC-III (medical), and AsyLex (legal). Two pre-built mixed datasets are available on Hugging Face:
+  - [RandHan/mixed-full-sft](https://huggingface.co/datasets/RandHan/mixed-full-sft) — Unbalanced version with all data from every domain (~1.89B chars).
+  - [RandHan/mixed-token-balanced-sft](https://huggingface.co/datasets/RandHan/mixed-token-balanced-sft) — Token-balanced version with equal char contribution per domain (~1.26B chars).
+
 Key adaptations:
 - Added `utils/model_utils.py` for unified config access across CausalLM and multimodal models.
 - Added `gemma3` / `gemma3_text` layer hooks in `knn_utils/saveEmbedMulti.py`.
