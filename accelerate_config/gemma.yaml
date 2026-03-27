@@ -1,0 +1,22 @@
+compute_environment: LOCAL_MACHINE
+debug: false
+
+distributed_type: MULTI_GPU
+num_machines: 1
+num_processes: 4              # 4*A100
+
+mixed_precision: bf16         # A100 支持 bf16，推荐使用
+downcast_bf16: 'no'
+
+enable_cpu_affinity: true     # 开启 CPU 亲和性，提高数据加载效率
+machine_rank: 0
+main_training_function: main
+rdzv_backend: static
+same_network: true
+tpu_env: []
+tpu_use_cluster: false
+tpu_use_sudo: false
+use_cpu: false
+
+# Accelerate 配置与模型架构无关，仅控制 GPU 分布式策略
+# Gemma3-1b 使用 DDP (MULTI_GPU) 即可；4b 可能需要考虑 FSDP

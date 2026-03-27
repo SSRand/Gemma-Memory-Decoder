@@ -1,0 +1,34 @@
+from memDec import MemoryDecoder
+
+import transformers
+from transformers import AutoModelForCausalLM
+from loguru import logger
+
+base_lm_path = "/nfs-stor/changjiang.han/models/gemma-3-4b-it"
+knn_generator_path = "/nfs-stor/changjiang.han/checkpoints/memdec-gemma3_text-1b-wikitext/epoch_69"
+
+tokenizer = transformers.AutoTokenizer.from_pretrained(base_lm_path)
+base_lm = AutoModelForCausalLM.from_pretrained(base_lm_path)
+knn_generator = AutoModelForCausalLM.from_pretrained(knn_generator_path)
+
+base_lm.eval()
+knn_generator.eval()
+
+joint = MemoryDecoder(base_lm, knn_generator, lmbda=0.55, knn_temp=1.0).to("cuda")
+
+prompt = f"As with previous Valkyira Chronicles games , Valkyria Chronicles III is"
+inputs = tokenizer(prompt, return_tensors="pt").to("cuda")
+
+out_ids = joint.generate(
+    **inputs,
+    max_new_tokens=20,
+    do_sample=False
+)
+logger.info(f"Memory Decoder output: {tokenizer.decode(out_ids[0], skip_special_tokens=True)}")
+
+out_ids = base_lm.generate(
+    **inputs,
+    max_new_tokens=20,
+    do_sample=False
+)
+logger.info(f"Base Model output: {tokenizer.decode(out_ids[0], skip_special_tokens=True)}")
