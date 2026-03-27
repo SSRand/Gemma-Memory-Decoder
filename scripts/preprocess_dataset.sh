@@ -1,9 +1,9 @@
 #!/bin/bash
 # Preprocess dataset for Gemma MemoryDecoder training
 
-TOKENIZER="/nfs-stor/changjiang.han/models/gemma-3-4b-it"
-DATASET_NAME="/nfs-stor/changjiang.han/dataset/mixed-hf"
-OUTPUT_DIR="/nfs-stor/changjiang.han/dataset/mixed-gemma3"
+TOKENIZER="/path/to/models/gemma-3-4b-it"
+DATASET_NAME="/path/to/dataset/mixed-hf"
+OUTPUT_DIR="/path/to/dataset/mixed-gemma3"
 NUM_PROC=32
 
 CMD="python utils/preprocess_dataset.py \

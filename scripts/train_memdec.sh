@@ -4,16 +4,16 @@
 MODEL_FAMILY="gemma3_text"
 MODEL_SIZE="1b"
 ACCELERATE_CONFIG=./accelerate_config/gemma.yaml
-MODEL=/nfs-stor/changjiang.han/models/gemma-3-1b-it
+MODEL=/path/to/models/gemma-3-1b-it
 
 KNN_MODEL_FAMILY="gemma3"
 KNN_MODEL_SIZE="4b"
 KNN_DIMENSION=2560
 
 DATASET_NAME="mixed-small"
-DATASET=/nfs-stor/changjiang.han/dataset/mixed-gemma3
-KNN_DSTORE_PATH=/nfs-stor/changjiang.han/dstore/${KNN_MODEL_FAMILY}-${KNN_MODEL_SIZE}/${DATASET_NAME}/knn_${KNN_MODEL_FAMILY}_train_${KNN_DIMENSION}.arrow
-OUTPUT_DIR=/nfs-stor/changjiang.han/checkpoints/memdec-${MODEL_FAMILY}-${MODEL_SIZE}-mixed-small
+DATASET=/path/to/dataset/mixed-gemma3
+KNN_DSTORE_PATH=/path/to/dstore/${KNN_MODEL_FAMILY}-${KNN_MODEL_SIZE}/${DATASET_NAME}/knn_${KNN_MODEL_FAMILY}_train_${KNN_DIMENSION}.arrow
+OUTPUT_DIR=/path/to/checkpoints/memdec-${MODEL_FAMILY}-${MODEL_SIZE}-mixed-small
 
 RESUME_CKPT=${RESUME_CKPT:-""}
 
@@ -22,7 +22,7 @@ GRADIENT_ACCUMULATION_STEPS=2
 BATCH_SIZE=4
 NUM_EPOCHS=30
 
-export TMPDIR=/nfs-stor/changjiang.han/tmp
+export TMPDIR=/tmp
 mkdir -p $TMPDIR
 
 echo "=========================================="

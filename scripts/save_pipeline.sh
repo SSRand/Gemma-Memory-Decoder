@@ -5,17 +5,17 @@ MODEL_FAMILY="gemma3"
 MODEL_SIZE="4b"
 DIMENSION=2560
 ACCELERATE_CONFIG="./accelerate_config/gemma.yaml"
-MODEL_TO_SAVE="/nfs-stor/changjiang.han/models/gemma-3-4b-it"
+MODEL_TO_SAVE="/path/to/models/gemma-3-4b-it"
 
 SKIP_STEP1=${SKIP_STEP1:-false}
 SKIP_STEP2=${SKIP_STEP2:-false}
 
 DATASET_NAME="mixed-small"
 SUBSET="train"
-DATASET="/nfs-stor/changjiang.han/dataset/mixed-gemma3"
+DATASET="/path/to/dataset/mixed-gemma3"
 
-DSTORE_DIR="/nfs-stor/changjiang.han/dstore/${MODEL_FAMILY}-${MODEL_SIZE}/${DATASET_NAME}"
-OUTPUT_DIR="/nfs-stor/changjiang.han/results/tmp/${MODEL_FAMILY}-${MODEL_SIZE}-${DATASET_NAME}-ppl"
+DSTORE_DIR="/path/to/dstore/${MODEL_FAMILY}-${MODEL_SIZE}/${DATASET_NAME}"
+OUTPUT_DIR="/path/to/results/tmp/${MODEL_FAMILY}-${MODEL_SIZE}-${DATASET_NAME}-ppl"
 
 BATCH_SIZE_EVAL=16
 BATCH_SIZE_KNN=4500

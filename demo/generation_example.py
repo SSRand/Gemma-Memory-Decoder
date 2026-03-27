@@ -4,8 +4,8 @@ import transformers
 from transformers import AutoModelForCausalLM
 from loguru import logger
 
-base_lm_path = "/nfs-stor/changjiang.han/models/gemma-3-4b-it"
-knn_generator_path = "/nfs-stor/changjiang.han/checkpoints/memdec-gemma3_text-1b-wikitext/epoch_69"
+base_lm_path = "/path/to/models/gemma-3-4b-it"
+knn_generator_path = "/path/to/checkpoints/memdec-gemma3_text-1b/epoch_N"
 
 tokenizer = transformers.AutoTokenizer.from_pretrained(base_lm_path)
 base_lm = AutoModelForCausalLM.from_pretrained(base_lm_path)
